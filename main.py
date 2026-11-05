@@ -2,7 +2,7 @@
 import os
 import shutil # libreria para mover archivos
 
-ruta = r"C:\Users\Naiara\Desktop\organizadorPython"
+ruta = r"C:\Users\Naiara\Downloads"  # ruta de la carpeta a organizar
 archivos = os.listdir(ruta)
 
 print("Archivos en la carpeta:", archivos)
@@ -15,7 +15,8 @@ categorias = {
     ".jpg": "Imágenes JPEG",
     ".png": "Imágenes PNG",
     ".exe": "Archivos ejecutables",
-    ".pdf": "Documentos PDF"
+    ".pdf": "Documentos PDF",
+    ".zip": "Archivos comprimidos",
 }
 
 # bucle
