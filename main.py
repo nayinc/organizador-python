@@ -1,6 +1,6 @@
 # importacionn de librerias
 import os
-
+import shutil # libreria para mover archivos
 
 ruta = r"C:\Users\Naiara\Desktop\organizadorPython"
 archivos = os.listdir(ruta)
@@ -20,11 +20,23 @@ categorias = {
 
 # bucle
 for archivo in archivos:
-    if archivo == "main.py" or archivo == ".git":
-        continue  # saltar el archivo main.py y la carpeta .git
-    # extension
-    extension = os.path.splitext(archivo)[1]
-    print(f"Archivo: {archivo}, Extensión: {extension}")
+    ruta_origen = os.path.join(ruta, archivo)
 
+    if os.path.isdir(ruta_origen):
+        continue
+
+    if archivo == "main.py" or archivo == ".git":
+        continue
+
+    # obtener la extensión del archivo
+    extension = os.path.splitext(archivo)[1]
     categoria = categorias.get(extension, "Otros")
-    print(f"El archivo {archivo} con extensión {extension} pertenece a la categoría: {categoria}")
+    print(f"Archivo: {archivo} | Categoría: {categoria}")
+
+    ruta_carpeta = os.path.join(ruta, categoria)
+    if not os.path.exists(ruta_carpeta):
+        os.makedirs(ruta_carpeta)
+        print(f"Carpeta creada: {ruta_carpeta}")
+
+    ruta_destino = os.path.join(ruta_carpeta, archivo)
+    shutil.move(ruta_origen, ruta_destino)
